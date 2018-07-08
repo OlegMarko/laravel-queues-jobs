@@ -20,8 +20,7 @@
     php artisan serve
     php artisan queue:work
 ```
-
-- [test route](http://127.0.0.1:8000)
+[test route](http://127.0.0.1:8000)
 
 ** Messages about running jobs are written to the `storage/logs/laravel.log` file
 
