@@ -24,6 +24,38 @@
 
 ** Messages about running jobs are written to the `storage/logs/laravel.log` file
 
+## Laravel Supervisor conf
+
+`sudo apt install supervisor`
+
+`cd /etc/supervisor/conf.d`
+
+`sudo nano laravel-worker.log`
+
+```
+[program:laravel-worker]
+#process_name=%(program_name)s_%(process_num)02d
+command=php /var/www/laravel-queues-jobs/artisan queue:work --sleep=3 --tries=3
+autostart=true
+autorestart=true
+user=root
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/laravel-worker.log
+```
+
+`sudo supervisorctl reread`
+
+`sudo supervisorctl update`
+
+start process
+
+`sudo supervisorctl start laravel-worker`
+
+stop process
+
+`sudo supervisorctl stop laravel-worker`
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
